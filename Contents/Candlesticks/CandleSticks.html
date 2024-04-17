@@ -3,9 +3,22 @@
 
 <head>
 	<Title>Candlesticks - Saharsh Bhadani</Title>
+	<style>
+		@media print {
+			html,
+			body {
+				display: none;
+			}
+		}
+		.prevent-select {
+			-webkit-user-select: none; /* Safari */
+			-ms-user-select: none; /* IE 10 and IE 11 */
+			user-select: none; /* Standard syntax */
+		}
+	</style>
 </head>
 <!--For Python: https://greyhoundanalytics.com/blog/backtesting-candlestick-patterns-in-python/-->
-<body>
+<body class="prevent-select">
 	<h1>JAPANESE CANDLESTICK CHARTING TECHNIQUE</h1>
 	<hr>
 	<hr>
@@ -212,6 +225,13 @@
 						its session highs.
 					</li>
 					<li>
+						One interesting aspect, a very long shadow hammer means that by the time the hammer is confirmed (we need to wait for a close to confrim 
+						the hammer), the market could be well off its lows. Buying at the close of such a hammer may not present an attractive risk/reward since 
+						the market may retrace back to the lows of the hammer before, potentially, resuming an upward course. A high-volume hammer decreases the 
+						chance for a correction to the hammer's low. Therefore, one may be more aggressive about buying on the hammer's close if it is a usually 
+						high-volume hammer than one would if the volume didn't give the same forceful confirmation.
+					</li>
+					<li>
 						If either of lines emerges after a rally, it is a potential 
 						top reversal signal called <b>a hanging man</b>. The name 
 						"hanging man" is derived from the fact that it looks like a 
@@ -311,6 +331,10 @@
 						by a black real body is the signal for a top reversal. 
 						This also shows that supply has overwhelmed demand.
 					</li>
+					<li>
+						The significance of the bearish engulfing pattern will increase if there is a lighter volume on the first candle (the white) and a 
+						heavier volume on the second candle (the black).
+					</li>			
 				</ul>
 				<ol>
 					There are three criteria for an engulfing pattern:
@@ -599,6 +623,11 @@
 						These two factors will help us gauge if the less-than-perfect pattern could have 
 						the same implications as a more classicly defined candle pattern. It is the 
 						subjectivity that makes computer recognition of candle patterns so difficult.
+					</li>
+					<li>
+						With the piercing pattern, we would like to see lighter volume on the black candle and heavier volume on the white candle. 
+						This would serve to reinforce that the bears are loosing force and the bulls are gaining a strong foothold. This volume 
+						scenario also increases the odds that the piercing pattern will hold.
 					</li>
 				</ul>
 			</td>
@@ -2640,15 +2669,227 @@
 	<h2>CANDLES WITH VOLUME</h2>
 	<ul>
 		<li>
-			
+			One of the most important clues sent out by the market is volume. Volume is like water pressure in a hose. The greater the water pressure, 
+			the more powerful the water flow. Likewise, the stronger the volume, the more force behind the move.
+		</li>
+		<li>
+			Volume should increase in the the dirrection of the trend to improve the likelihood that the current trend should continue. If, however, 
+			volume declines as a trend progresses, there is less reason to believe the trend will continue. Volume can also be useful for confirming 
+			tops and bottoms.
+		</li>
+		<li>
+			Because volume numbers are differnet from market to market, so we don't look at an absolute volume figure, but at relative volume. In other 
+			words, in one stock 50,000 could be an extraordinarily high-volume session - while, in another, 10 million shares might be light volume. As 
+			such, we look for relative volume spikes in a market.
+		</li>
+		<li>
+			One interesting aspect, a very long shadow hammer means that by the time the hammer is confirmed (we need to wait for a close to confrim 
+			the hammer), the market could be well off its lows. Buying at the close of such a hammer may not present an attractive risk/reward since 
+			the market may retrace back to the lows of the hammer before, potentially, resuming an upward course. A high-volume hammer decreases the 
+			chance for a correction to the hammer's low. Therefore, one may be more aggressive about buying on the hammer's close if it is a usually 
+			high-volume hammer than one would if the volume didn't give the same forceful confirmation.
+		</li>
+		<li>
+			With the piercing pattern, we would like to see lighter volume on the black candle and heavier volume on the white candle. 
+			This would serve to reinforce that the bears are loosing force and the bulls are gaining a strong foothold. This volume 
+			scenario also increases the odds that the piercing pattern will hold.
+		</li>
+		<li>
+			The significance of the bearish engulfing pattern will increase if there is a lighter volume on the first candle (the white) and a 
+			heavier volume on the second candle (the black).
+		</li>
+		<li>
+			Adding the insights of volume to the power of a falling or rising window is, as the Japanese proverb says, "Like the right hand helping 
+			the left". While a rising window is viewed as potential support, a high-volume window enhances its effectiveness as support (or, in the 
+			case of falling window, as resistance).
+		</li>
+		<li>
+			While a small real body is a clue that a decline or advance may be exhausing itself, if we add high volume to a small real body, we get 
+			more substantiation of a turn.
+		</li>
+		<li>
+			To summarize integrating high volume with spinning tops or doji:
+			<ol>
+				<li>
+					An unusually high-volume doji or spinning top after an extended advance illustrates that the bulls' drive is beaing met with 
+					enough supply to stall the rally. This is a possible top reversal.
+				</li>
+				<li>
+					A very heavy-volume doji or small real body during a steep decline shows that heavy supply is being taken by the equally aggressive 
+					demand.
+				</li>
+			</ol>
+		</li>
+		<li>
+			Whether there is a single candle line or a group of candles forming a pattern, the chances of a turnaround are increased if volume confirms 
+			what the candle pattern is showing. 
+		</li>
+		<li>
+			As a general rule we can say that the longer the white candle, the more probable a continuation of a rally. But volume adds another important 
+			dimension to this. When a market creates a new high, we would like to see that confirmed by a push in volume. There are cases where the volume 
+			won't corroborate the breakout. Although lack of volume on an upside breakout wouldn't convert from a bull to a bear, it is a reason to be more 
+			unwillingness to take risks. Thus is bacause such a low-volume rally increases the chances that is will not be sustained. 
 		</li>
 	</ul>
 	<hr>
-	<h2>Heading</h2>
-
-
-
-
+	<h2>MEASURED MOVES</h2>
+	<ul>
+		<li>
+			Candle charts, because they provide an x-ray into the demand/supply situation, are potent in calling early turning signals. Assuming 
+			one enters a trade with a candle signal (preferably with confirmation with other candle or Wesitern signals), the challange becomes 
+			knowing when to exit.
+		</li>
+		<li>
+			One of the methods is forecasting price objectives from classic Western patterns. There is another reason for incorporating mearused 
+			targets. No matter how ideal a candle pattern or ho many reversal signals converge at one area, it doesn't predict the extent of the 
+			reversal. This is where we shift to Western technicals for price objectives.
+		</li>
+		<li>
+			The measuring techniques illustrated here include breakouts from box range, swing targets, flags and pennants, and ascending and 
+			descending triangles.
+		</li>
+	</ul>
+	<hr>
+	<h2>BREAKOUTS FROM BOXES</h2>
+	<table>
+		<tr>
+			<td style="width: 50%;">
+				<ul>
+					<li>
+						Most of the time, the markets are not in a trending mode but rather in a lateral range, what the Japanese call a box range. 
+						On such accasions, the market is in relative state of harmony with neither the bulls nor the bears in charge. The Japanese 
+						word for tranquility and calm is "wa". Markets that are bounded in a box range as being in a state of "wa".
+					</li>
+					<li>
+						When a market is in a box, it is like a coiled spring ready to unwind when the surrounding pressure is released. We can use 
+						this potential pent-up energy. When a breakout from box range unfolds, the market has good potential continuing in the 
+						dirrection of the breakout.
+					</li>
+					<li>
+						As shown in the exhibit (the figures on the right-side of this section), a move outside the box implies a move at least equal 
+						to the vertical height of the box (bullish breakout), one takes the vertical measurement from the bottom end of the box (the 
+						support area) to the top end of the box range (the previous resistance). The distance is shown as A-B. We derive a target by 
+						adding this A-B range onto the prior resistance area. As an example, an upside breakout from a $50-$53 box range would give 
+						a $56 target.
+					</li>
+					<li>
+						The opposite would be a penetration of ths box range's support (shown as a bearish breakout in the exhibit in this section). If 
+						we used the same $50-$53 box range, a bearish break of this support at $50 would provide a $47 target.
+					</li>
+				</ul>
+			</td>
+			<td style="width: 50%;">
+				<img src="breakouts-from-boxes.png" alt="Breakout From Boxes">
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>SWING TARGETS, FLAGS, AND PENNANTS</h2>
+	<p>Swing targets, flags, and pennants are comprised of three segments:</p>
+	<ol>
+		<li>
+			An initial cleanly defined brisk move.
+		</li>
+		<li>
+			A correction of the move.
+		</li>
+		<li>
+			A resumption of the move in the same direction as the initial move.
+		</li>
+	</ol>
+	<table>
+		<tr>
+			<td style="width: 50%;">
+				<ul>
+					<li>
+						The theory behind the swing target (shown in the exhibit on the right side) is that if market advances, or declines, 
+						vigorously, and then there is a retracement of this move, the next leg of the move should be at least equal to the move 
+						of the previous channel. 
+					</li>
+					<li>
+						This is shown in the figure on this right of this section where the height of the first leg is a rally from A to B. There 
+						is then a correction to C. Once the market ascends from C, we would "swing" the initial channel height of A to B onto the 
+						corrrection low at C. Hence, the name "swing target".
+					</li>
+				</ul>
+			</td>
+			<td style="width: 50%;">
+				<img src="swing-target.png" alt="Swing Targets">
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 50%;">
+				<ul>
+					<li>
+						Swing targets are very similar in concept to flags and pennants. The major difference is that corrections in a swing target 
+						are more substantial than flags or pennants. As shown in the exhibit, flags are lateral, ar small countertrend, moves after 
+						a clearly defined sharp advance or decline. This congestion band serves to relieve an overbought (in a rally) or oversold (in 
+						a decline) condition. If, after this short-term correction, the market resumes its prior trend, we then have a flag or pennant 
+						pattern.
+					</li>
+					<li>
+						The difference between flags and pennants is that in a flag, the "flag" portion is a horizontal box range. In a pennant pattern, 
+						the "flag" portion (i.e., the congestion band) looks like a pennant because it has lower highs and higher lows.
+					</li> 
+				</ul>
+			</td>
+			<td style="width: 50%;">
+				<img src="bull-flag-and-pennant.png" alt="Bull Flag and Pennant">
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 50%;">
+				<ul>
+					<li>
+						Exhibits Bull Flag and Pennant & Bear Flag and Pennant show the measurements of the bull and bear flag and pennants. Their 
+						measuring implications are built on the same concept as that of the swimg target. For the flag or pennant pattern, we use 
+						the vertical height of the initial advance or decline - nicknamed the "flagpole".
+					</li>
+					<li>
+						In the Exhibit Bull Flag and Pennant we see bull flag and pennant's price targets are derived by adding the height of the 
+						initial sharp advance (the flagpole) from A to B onto the bottom end of the congestion band (which is either a flag or pennant 
+						shape). The more traditional method is adding this flagpole's height to the top of the flag or pennant. We may want to make a 
+						mistake by exiting too early rather than missing the last few few ticks. As such the measurement starts from the bottom of the 
+						flag or pennant rather than the top.
+					</li>
+					<li>
+						As shown in Exhibit Bear Flag and Pennant, the bear flag or pennant objective is forecasted by substracting the flagpole (A-B) 
+						range from the top of the congestion band. (Again, this is a subjective conservative target - others will use the more classic 
+						measurement from the bottom of the congestion band).
+					</li>
+				</ul>
+			</td>
+			<td style="width: 50%;">
+				<img src="bear-flag-and-pennant.png" alt="Bear Flag and Pennant">
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 50%;">
+				<ul>
+					<li>
+						There are many types of triangles in Western technicals: symmetrical triangles, wedges, and so on. As shown in the 
+						Exhibits, there are ascending and descending triangles.
+					</li>
+					<li>
+						The ascending triangle has a horizontal resistance area tested numerous times. Moves down from this resistance are at 
+						sequentially higher lows. This exemplifies that, although there is supply at the resistance line, demand is getting more 
+						aggressive as the market pulls back from this resistance area. If the bulls can then push the market over the horizontal 
+						resistance, we have an ascending triangle. The measuremant is the height from the horizzontal resistance area (A) to the 
+						widest part of the triangles (at B) added to the just-broken resistance area.
+					</li>
+					<li>
+						The descending triangle is a pattern wherein a horizontal support area is successfully defended, but each rally from there 
+						meets with successively lower highs. These lower highs rflect how the bears are keeping the bulls well in check. With a 
+						penetration of support, we take the wildest point of the descending triangle and add that measurement from the prior support 
+						line.
+					</li>
+				</ul>
+			</td>
+			<td style="width: 50%;">
+				<img src="ascending-and-descending-triangles.png" alt="Ascending and Descending Triangles">
+			</td>
+		</tr>
+	</table>
 <!--https://greyhoundanalytics.com/blog/backtesting-candlestick-patterns-in-python/-->
 	<hr>
 	<hr>
