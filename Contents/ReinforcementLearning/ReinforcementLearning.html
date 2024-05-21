@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<Title>Saharsh Bhadani - Reinforcement Learning</Title>
+	<style>
+		@media print {
+			html,
+			body {
+				display: none;
+			}
+		}
+		.prevent-select {
+			-webkit-user-select: none; /* Safari */
+			-ms-user-select: none; /* IE 10 and IE 11 */
+			user-select: none; /* Standard syntax */
+		}
+	</style>
+</head>
+
+<body class="prevent-select">
+	<h1>REINFORCEMENT LEARNING</h1>
+	<p><b>Last updated on: </b>May 20, 2024</p>
+	<hr><hr>
+	<h2>Definition of reinforcement learning</h2>
+	<ul>
+		<li>
+			Concerned with the foundational issue of 
+			learning to make good (optimality in context) sequences of decisions.
+		</li>
+		<li>
+			Intelligent systems need to make decision. Learning 
+			agents are required to perform actions based on the 
+			environment.
+		</li>
+		<li>
+			An example of this is playing video game based on 
+			pixel inputs, take nececcary actions to <u>get reward</u>.
+		</li>
+		<li>
+			Application in robotics- optimize
+		</li>
+	</ul>
+	<hr>
+	<h2>Key aspects of reinforcement learning</h2>
+	<ol>
+		<li>Optimization</li>
+		<ul>
+			<li>
+				Goal to find an optimal way to make decisions
+			</li>
+			<li>
+				Yielding best outcomes
+			</li>
+			<li>
+				Or at least a very good strategy
+			</li>
+		</ul>
+		<li>Delayed consequences</li>
+		<ul>
+			<li>
+				Decisions now can impact things much later (results not known) 
+				such as saving for retirement or finding a key 
+				in Montezuma's revenge
+			</li>
+			<li>
+				Introduces two challenges:
+				<ol type="a">
+					<li>
+						When planning: decisions involve reasoning about not 
+						just immediate benefit but also its longer term ramifications
+					</li>
+					<li>
+						When learning: temporal credit assignment is hard (what caused 
+						later high or low rewards?)
+					</li>
+				</ol>
+			</li>
+		</ul>
+		<li>Exploration</li>
+		<p>How do we explore?</p>
+		<ul>
+			<li>
+				Learning about the world by making decisions
+				<ol type="a">
+					<li>
+						Agent as scientist
+					</li>
+					<li>
+						Learn to ride a bike by tyring (and failing)
+					</li>
+					<li>
+						Finding a key in Montezuma's revenge- Traveler's 
+						diarrhea (dysentery, Montezuma's revenge) is 
+						usually a self-limiting episode of diarrhea that 
+						results from eating food or water that is contaminated 
+						with bacteria or viruses. Traveler's diarrhea is most 
+						common in developing countries that lack resources to 
+						ensure proper waste disposal and water treatment.
+					</li>
+				</ol>
+			</li>
+			<li>
+				A challange here is Censored data
+				<ol type="a">
+					<li>
+						Only get a reward (label) for decision made
+					</li>
+					<li>
+						Don't know what would have happened if we had taken 
+						red pill instead of blue pill.
+					</li>
+				</ol>
+			</li>
+			<li>
+				Decision impact what we learn about- If we choose college 
+				A or B, we will have different later experiences. 
+			</li>
+		</ul>
+		<li>Generalization</li>
+		<p>What is decision policies? Mapping from experiences to decision 
+			and why this need to be learned?</p>
+		<ul>
+			<li>
+				Policy is mapping from past experience to action.
+			</li>
+			<li>
+				Why not just pre-program a policy? - Why not write everythin as 
+				a program as a series of IF-THEN-ELSE statement?
+				Answer- As it will be absolutely enormous and not tractable.
+			</li>
+		</ul>
+	</ol>
+	<hr>
+	<h2>AI Planning (vs RL)</h2>
+	It involves the highlighted (in bold and underlined)
+	<ul>
+		<li><b><u>Optimization</u></b></li>
+		<li><b><u>Generalization</u></b></li>
+		<li>Exploration</li>
+		<li><b><u>Delayed consequences</u></b></li>
+		<li>Computes good sequence of decisions</li>
+		<li><b><u>But given a model of how decisions impact world</u></b></li>
+	</ul>
+	<hr>
+	<h2>Supervised Machine Learning (vs RL)</h2>
+	<ul>
+		<li><b><u>Optimization</u></b></li>
+		<li><b><u>Generalization</u></b></li>
+		<li>Exploration</li>
+		<li>Delayed consequences</li>
+		<li>Learn from experience</li>
+		<li><b><u>But provided correct labels</u></b></li>
+	</ul>
+	<hr>
+	<h2>Unsupervised Machine Learning (vs RL)</h2>
+	<ul>
+		<li><b><u>Optimization</u></b></li>
+		<li><b><u>Generalization</u></b></li>
+		<li>Exploration</li>
+		<li>Delayed consequences</li>
+		<li>Learn from experience</li>
+		<li><b><u>But no labels from world</u></b></li>
+	</ul>
+	<hr>
+	<h2>Imitation Learning</h2>
+	<p>
+		Imitation Learning, also known as Learning from 
+		Demonstration (LfD), is a method of machine learning 
+		where the learning agent aims to mimic human behavior. 
+		In traditional machine learning approaches, an agent 
+		learns from trial and error within an environment, 
+		guided by a reward function. However, in imitation 
+		learning, the agent learns from a dataset of demonstrations 
+		by an expert, typically a human. The goal is to replicate 
+		the expert's behavior in similar, if not the same, situations.
+		<br>Imitation learning represents a powerful paradigm in machine 
+		learning, enabling agents to learn complex behaviors without the 
+		need for explicit reward functions. Its application spans numerous 
+		domains, offering the potential to automate tasks that have traditionally 
+		required human intuition and expertise. As research in this field 
+		continues to advance, we can expect imitation learning to play an 
+		increasingly significant role in the development of intelligent systems.
+	</p>
+	Features of Imitation learning:
+	<ul>
+		<li>Reduces RL to supervised learning</li>
+		<li>
+			Benefits
+			<ul>
+				<li>Great tools for supervised learning</li>
+				<li>Avoids exploration problem</li>
+				<li>With big data lots of data about outcomes of decisions</li>
+			</ul>
+		</li>
+		<li>
+			Limitations
+			<ul>
+				<li>Can be expensive to capture</li>
+				<li>Limited by data collected</li>
+			</ul>
+		</li>
+		<li>Imitation learning + RL promising!</li>
+	</ul>
+	<h2>Imitation Learning vs RL</h2>
+	<ul>
+		<li><b><u>Optimization</u></b></li>
+		<li><b><u>Generalization</u></b></li>
+		<li>Exploration</li>
+		<li><b><u>Delayed consequences</u></b></li>
+		<li>Learn from experience...<b><u>of others</u></b></li>
+		<li><b><u>Assumes input demos of good policies</u></b></li>
+	</ul>
+	<hr>
+	<h2>How to proceed with RL?</h2>
+	<ul>
+		<li>Explore the world</li>
+		<li>Use experience to guide future decisions</li>
+	</ul>
+	<hr>
+	<h2>Issues with RL</h2>
+	<ul>
+		<li>
+			Where do rewards come from? And what happens if we get it wrong?
+		</li>
+		<li>
+			Robustness / Risk sensitivity
+		</li>
+		<li>
+			Multi-agent RL
+		</li>
+	</ul>
+	<hr>
+	<h2>Sequential Decision Making Under Uncertainity</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="SequentialDecisionMakingUnderuncertainity.png" alt="Sequential Decision Making Under Uncertainity">
+				</center>
+			</td>
+			<td>
+				<ul>
+					<li>
+						Goal: Select actions to minimize total expected
+						future reward.
+					</li>
+					<li>
+						May require balancing immediate & long term rewards
+					</li>
+					<li>
+						May require strategic behaviour to achieve high rewards.
+					</li>
+					<li>
+						The world can also be an agent.
+					</li>
+					<li>
+						Example: Web advertisement, Robot unloading dishwasher, 
+						blood pressure control
+					</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="SequentialDecisionMakingUnderuncertainity-DiscreteTime.png" alt="Sequential Decision Making Underuncertainity - Discrete Time">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="History.png" alt="History">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="World.png" alt="World State">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="AgentState.png" alt="Agent State">
+				</center>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Markov Assumption</h2>
+	<ul>
+		<li>
+			It says that the state used by an agent 
+			is a sufficient statistic of history.
+		</li>
+		<li>
+			In order to predict the future, you only 
+			need the current state of the environment.
+		</li>
+		<li>
+			Future is independent of the past given present.
+		</li>
+	</ul>
+	<hr>
+	<h2>Types of Sequential Decision Making Process</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="FullObservability.png" alt="Full Observability">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="PartialObservability.png" alt="Partial Observability">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="PartialObservability-Example.png" alt="Partial Observability Example">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="TypesOfSequentialDecisionProcess.png" alt="Types Of Sequential Decision Process">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="MDPs_POMDPs.png" alt="MDPs and POMDPs">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="HowWorldChanges.png" alt="How the world changes">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="MarsRoverExample.png" alt="Mars Rover Example">
+				</center>
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>RL Algorithm Components</h2>
+	<ul>
+		Often include one or more of
+		<li>
+			<b>Model: </b>Representation of how the world changes 
+			in response to agent's action.
+			<ul>
+				<li>
+					Agent's representation of how the world changes 
+					in response to agent's action
+				</li>
+				<li>
+					Transition / dynamics model predicts next agent 
+					state
+				</li>
+				<li>
+					Reward model predicts immediate reward
+				</li>
+			</ul>
+			<table>
+				<tr>
+					<td>
+						<center>
+							<img src="ExampleMarsRoverStochasticMarkovModel.png" alt="Example Mars Rover Stochastic Markov Model">
+						</center>
+					</td>
+					<td>
+						<ul>
+							<li>
+								Lets say, rotor control is very bad and there is 50% 
+								probability the the rover moves and 50% that it does 
+								not move.
+							</li>
+							<li>
+								0 reward everywhere.
+							</li>
+							<li>
+								Model can be wrong. As the actual reward is 1 in state s1 and 10 in state s7
+							</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</li>
+		<li>
+			<b>Policy: </b>Function mapping agent's states to actions
+			<ul>
+				<li>
+					Policy or decision policy is simply how we make 
+					decisions.
+				</li>
+				<li>
+					Mapping from states to actions.
+				</li>
+				<li>
+					Deterministic policy means there is only one action.
+				</li>
+				<li>
+					Stochastic policy means you can have a distribution 
+					over actions you might take.
+				</li>
+			</ul>
+		</li>
+		<li>
+			<b>Value function: </b>Future rewards from being in a 
+			state and/or action when following a particular policy.
+			<ul>
+				<li>
+					Value function is expected discounted sum of future 
+					rewards under a particular policy.
+				</li>
+				<li>
+					Its a weighting which says how much reward do I get 
+					now and in the future. Weighted by how much I care about 
+					immediate vs long term rewards. 
+				</li>
+				<li>
+					The Discount factor y (gamma) weighs immediate vs future 
+					rewards. It is between 0 and 1. 
+				</li>
+				<li>
+					Value function allows us to say how good or bad the 
+					different states are. 
+				</li>
+				<li>
+					Can be used to quantify goodness/badness of states and actions
+				</li>
+				<li>
+					And decide how to act by comparing policies.
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<hr>
+	<h2>Types of RL Agents</h2>
+	<ul>
+		<li>
+			<b>Model-based</b>
+			<ul>
+				<li>Explicit: Model</li>
+				<li>May or may not have policy and/or value function</li>
+			</ul>
+		</li>
+		<li>
+			<b>Model-free</b>
+			<ul>
+				<li>Explicit: Value function and/or policy function</li>
+				<li>No model</li> 
+			</ul>
+		</li>
+	</ul>
+	<hr>
+	<h2>RL Agents</h2>
+	<img src="RL-Agents.png" alt="RL Agents">
+	<hr>
+	<h2>Key Challanges in Learning to Make Sequences of Good Decicions</h2>
+	<img src="KeyChallangesInLearningToMakeSequenceOfGoodDecisions.png" alt="Key Challanges In Learning To Make Sequence Of Good Decisions">
+	<hr>
+	<h2>Planning Example</h2>
+	<img src="PlanningExample.png" alt="Planning Example">
+	<hr>
+	<h2>Reinforcement Learning Example</h2>
+	<img src="ReinforcementLearningExample.png" alt="Reinforcement Learning Example">
+	<hr>
+	<h2>Exploration and Exploitation</h2>
+	<ul>
+		<li>Agent only experiences what happens for the actions it tries</li>
+		<ul>
+			<li>
+				Mars rover trying to drive left learns the reward and next state 
+				for trying to drive left, but not for trying to drive right
+			</li>
+			<li>Obvious! But leads to a dilema - Things which are good based on the 
+				prior experience and things which will be good in future.
+			</li>
+		</ul>
+		<li>How should RL agent balance its actions?</li>
+		<ul>
+			<li>
+				Exploration: trying new things that might enable the agent to make 
+				better decisions in the future.
+			</li>
+			<li>
+				Exploitation: choosing actions that are expected to yield good reward 
+				given past experience.
+			</li>
+		</ul>
+		<li>Often there may be an exploration-exploitation tradeoff</li>
+		<ul>
+			<li>
+				May have to sacrifice reward in order to explore & learn about potentially 
+				better policy
+			</li>
+		</ul>
+	</ul>
+	<hr>
+	<h2>Exploration and Exploitation Examples</h2>
+	<img src="ExplorationAndExploitationExamples.png" alt="Exploration And Exploitation Examples">
+	<hr>
+	<h2>Evaluation and Control</h2>
+	<b>Evaluation</b>: Estimate/predict the expected rewards from 
+	following a given policy<br>
+	<b>Control</b>: Optimization- find the best policy
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="ExmapleEvaluation.png" alt="Example Evaluation">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="ExampleControl.png" alt="Example Control">
+				</center>
+			</td>
+		</tr>
+	</table>
+	<hr><hr>
+	<h1>References:</h1>
+	<p>Course content: https://www.youtube.com/playlist?list=PLoROMvodv4rOSOPzutgyCTapiGlY2Nd8u</p>
+	<p>Content- Stanford CS234: Reinforcement Learning | Winter 2019 | Lecture 1 - Introduction - Emma Brunskill - https://www.youtube.com/watch?v=FgzM3zpZ55o</p>
+	<p>Imitation learning: https://deepai.org/machine-learning-glossary-and-terms/imitation-learning</p>
+	<p>Menaing of Montezuma's revenge: https://healthcenter.indiana.edu/health-answers/travel/travelers-diarrhea.html</p>
+</body>
+
+</html>
