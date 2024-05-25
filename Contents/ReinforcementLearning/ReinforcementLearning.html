@@ -20,7 +20,7 @@
 
 <body class="prevent-select">
 	<h1>REINFORCEMENT LEARNING</h1>
-	<p><b>Last updated on: </b>May 20, 2024</p>
+	<p><b>Last updated on: </b>May 25, 2024</p>
 	<hr><hr>
 	<h2>Definition of reinforcement learning</h2>
 	<ul>
@@ -528,10 +528,470 @@
 			</td>
 		</tr>
 	</table>
+	<hr>
+	<h2>Markov Process or Markov Chain</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Markov-Process-Markov-chain.png" alt="Markov Process Markov chain">
+				</center>
+			</td>
+			<td>
+				When we think of a Markov Process or Markov chain, 
+				we don't think of a control yet. We don't think of 
+				any action. There is no action. But the idea is there 
+				will be a scochastic process that's evolving over time.
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Return & Value Function</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Return-and-value-function.png" alt="Return-and-value-function">
+				</center>
+			</td>
+			<td>
+				<ul>
+					<li>
+						When we think about returns, we think about returns 
+						and expected returns.
+					</li>
+					<li>
+						We define horizon as how long the agent is acting 
+						for. How long this process is going on for and can be 
+						infinite.
+					</li>
+					<li>
+						The definition of Return is the sum of rewards from 
+						time step. The time can be infinite.
+					</li>
+					<li>
+						Value function is the expected return. If the process 
+						is deterministic these two things will be identical. If 
+						the process is stochastic, they will be different. That's 
+						because in deterministic you always go to same next state. 
+						Whereas, it will br different in stochastic process (in general).
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<hr>Discount factor<hr>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Discount-factor.png" alt="Discount-factor">
+				</center>
+			</td>
+			<td>
+				<ul>
+					<li>
+						Discount factor- Used for mathematic convenience.
+					</li>
+					<li>
+						We can be assured that the value function is bounded
+						as long as the reward function is bounded. 
+					</li>
+					<li>
+						People empirically often act as there is a discount factor.
+						We weigh future rewards lowen than immediate rewards typically.
+					</li>
+					<li>
+						If you are only using discount factor for mathematical convenience, 
+						if your horizon is always guaranteed to be finite, its fine to use y (gamma) = 1
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Computing the Value of Markov Reward Process</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="computing-the-value-of-a-markov-reward-process.png" alt="computing-the-value-of-a-markov-reward-process">
+				</center>
+			</td>
+			<td>
+				<ul>
+					<li>
+						The accuracy is given by 1 by square root of n.
+						Where n is the number of roll-outs (simulations).
+					</li>
+					<li>
+						It does not require the process to be markov process.
+						Its just a way to estimate sums of returns. Sums of rewards.
+					</li>
+					<li>
+						It can give you better estimates of process. Which means 
+						computationally cheaper ways of estimating what the value 
+						of a process.
+					</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="computing-the-value-of-a-markov-reward-process-2.png" alt="computing-the-value-of-a-markov-reward-process-2">
+				</center>
+			</td>
+			<td>
+				This means the MRP values is the sum of Immediate reward plus the 
+				discounted sum of future rewards.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="matrix-form-of-MRP.png" alt="matrix-form-of-MRP">
+				</center>
+			</td>
+			<td>
+				The figure shows the equation to get V or V(s)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="iterative-algorithm-for-computing-value of a MRP.png" alt="iterative-algorithm-for-computing-value">
+				</center>
+			</td>
+			<td>
+				The computational complexity is lower than the previous method.
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Markov Decision Process</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Markov-Decision-Process.png" alt="Markov-Decision-Process">
+				</center>
+			</td>
+			<td>
+				MRP(Markov Reward Process) + action<br>
+				MDP is a tuple which as state, action, reward, dynamics model and discount factor
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>MDP Policies</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="MDP-Policies.png" alt="MDP-Policies">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="MDP-plus-policy.png" alt="MDP-plus-policy ">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="MDP-Policy-Evaluation-Iterative-Algorithm.png" alt="">
+				</center>
+			</td>
+			<td>
+
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>MDP Control</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="MDP-Control.png" alt="MDP-Control">
+				</center>
+			</td>
+			<td>
+				<p> 
+					In general if there are |a| actions and |s|
+					states, how many deterministic policies are there?<br>
+					--There are |a| ^ |s| (a to the power s) deterministic policies.
+					<br><br>
+					Is the optimal policy for a MDP always unique?<br> --NO<br><br>
+					But there is always an optimal policy which gives maximum return.
+				</p>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Policy Search</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Policy-search.png" alt="Policy-search">
+				</center>
+			</td>
+			<td>
+				<p>
+					If there is unlimited compute power, examine each and every
+					policy and then take the max (reward) of those.
+				</p>
+				<p>
+					But, thats not the case. 
+				</p>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>MDP Policy Iteration (PI)</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="MDP-Policy-Iteration-(PI).png" alt="MDP-Policy-Iteration-(PI)">
+				</center>
+			</td>
+			<td>
+				<p>
+					In practice, we keep track of a guess of what the optimal policy might be. We 
+					evaluate its value and then we try to improve it.
+				</p>
+				<p>
+					If we can't improve it anymore then we halt.
+				</p>
+				<p>
+					So, we start by initializing randomly. Here now
+					you can think of the subscript is indexing which 
+					policy we're at. So, initially we start off with 
+					some random policy and then Pi_i is always going to 
+					index our current guess of what the optimal policy 
+					might be. And while its not changing, we'll talk 
+					about whether or not it can change or go back to the 
+					same one in a second, we do value function policy. We 
+					evaluate the policy using the same sorts of techniques 
+					we just discussed because it's a fixed policy. Which 
+					means we are now in a markov reward process. And then 
+					we do policy improvement. So, the new thing we are doing 
+					before now is policy improvement.
+				</p>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>New Definition: State-Action Value Q</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="NewDefinition-State-ActionValueQ.png" alt="NewDefinition-State-ActionValueQ">
+				</center>
+			</td>
+			<td>
+				<ul>
+					<li>
+						In order to define how we can improve a policy, 
+						we are going to find something new which is the 
+						state action value.
+					</li>
+					<li>
+						State values are denoted by V. Which is V_Pi(S)
+						(V Pi of s). Which says if we start in state s 
+						and you follow policy pi, what is expected discounted 
+						sum of rewards. 
+					</li>
+					<li>
+						A state action value says, I will follow this policy pi 
+						but not right away. I will take an action a, which might 
+						be different than what my policy is telling me to do and 
+						then later on the next time-step I'm going to follow policy 
+						pi.
+					</li>
+					<li>
+						So, it just says I'm going to get my immediate reward from 
+						taking this action a that I am chosing and then I'm going to 
+						transition to a new state. Again. that depends on my current 
+						state and the action I just took and from then on I am going 
+						to take policy pi. So, that defines the Q function.
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Policy Improvement</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Policy-Improvement.png" alt="Policy-Improvement">
+				</center>
+			</td>
+			<td>
+				<ul>
+					<li>
+						What policy improvement does is it takes into 
+						consideration a policy, and gets value of it. So, 
+						policy evaluation just allowed you to compute what 
+						was the value of that policy. And now I want to see 
+						if I can improve it.
+					</li>
+					<li>
+						Now, remember right now we are in the case where we know 
+						the dynamics model and we know the reward model. So, we 
+						proceed with Q computation where we compare the previous 
+						value function by policy and now compute Q_pi which is obtained 
+						by taking a different action. It could be the same and we do 
+						this for all A and for all S. So, for all A and all S we compute 
+						this and then we are going to compute the new policy and this is 
+						the improvement step which maximizes this Q.
+					</li>
+					<li>
+						So, we do this computation and then we take the max.
+					</li>
+					<li>
+						Now, by definition this has to be greater than or equal to Q_pi(S, pi_(a))
+					</li>
+					<li>
+						Finding local maxima or global maxima? --Global
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Delving Deeper Into Policy Improvement Step</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Delving-Deeper-Into-Policy-Improvement-Step.png" alt="Delving-Deeper-Into-Policy-Improvement-Step">
+				</center>
+			</td>
+			<td>
+				<ul>
+					<li>
+						First Q function, is calculated. Then new policy is evaluated. 
+						For acceptance of new policy, the new value has to be greater 
+						than the old value. When we do this, we compute Q function. First 
+						we take an action and then we follow our old policy from then 
+						onwards. And then I am picking whatever action is maximizing 
+						that quantify for each state.
+					</li>
+					<li>
+						Okay. So, I am gonna do this process for each state. But, then 
+						we are not going to follow the old policy from that point onwards,
+						we will follow the new policy for all the time. If the new is better.
+					</li>
+				</ul>
+			</td>
+		</tr>
+			<td>
+				<center>
+					<img src="Monotonic-Improvement-in-policy.png" alt="Monotonic-Improvement-in-policy">
+				</center>
+			</td>
+			<td>
+				<ul>
+					<li>
+						The value is monotonic if the value of new policy is 
+						greater than or equal to the old policy for all 
+						states. So, it has to be either the same value or better.
+					</li>
+					<li>
+						With strict inequality if the old policy was suboptimal.
+					</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="proof-monotonic-improvement-in-policy.png" alt="proof-monotonic-improvement-in-policy">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="proof-monotonic-improvement-in-policy-1.png" alt="proof-monotonic-improvement-in-policy-1">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="policy-iteration-1.png" alt="policy-iteration-1">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="policy-iteration-2.png" alt="policy-iteration-2">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="optimal-policy-1.png" alt="optimal-policy-1">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Bellman-Eqn.png" alt="Bellman-Eqn">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="value-iteration.png" alt="value-iteration">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="policy-iteration-as-bellman-operation.png" alt="">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="policy-iteration-as-bellman-operation-1.png" alt="policy-iteration-as-bellman-operation-1">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="contraction-operator.png" alt="contraction-operator">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="Will-value-iteration-converge.png" alt="Will-value-iteration-converge">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="proof-bellman-backup-is-a-contraction.png" alt="proof-bellman-backup-is-a-contraction">
+				</center>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2></h2>
 	<hr><hr>
 	<h1>References:</h1>
 	<p>Course content: https://www.youtube.com/playlist?list=PLoROMvodv4rOSOPzutgyCTapiGlY2Nd8u</p>
 	<p>Content- Stanford CS234: Reinforcement Learning | Winter 2019 | Lecture 1 - Introduction - Emma Brunskill - https://www.youtube.com/watch?v=FgzM3zpZ55o</p>
+	<p>Content- Stanford CS234: Reinforcement Learning | Winter 2019 | Lecture 2 - Given a Model of the World - https://www.youtube.com/watch?v=E3f2Camj0Is&t=1560s</p>
 	<p>Imitation learning: https://deepai.org/machine-learning-glossary-and-terms/imitation-learning</p>
 	<p>Menaing of Montezuma's revenge: https://healthcenter.indiana.edu/health-answers/travel/travelers-diarrhea.html</p>
 </body>
