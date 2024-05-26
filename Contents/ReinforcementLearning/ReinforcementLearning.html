@@ -20,7 +20,7 @@
 
 <body class="prevent-select">
 	<h1>REINFORCEMENT LEARNING</h1>
-	<p><b>Last updated on: </b>May 25, 2024</p>
+	<p><b>Last updated on: </b>May 26, 2024</p>
 	<hr><hr>
 	<h2>Definition of reinforcement learning</h2>
 	<ul>
@@ -581,7 +581,7 @@
 		</tr>
 	</table>
 	<hr>
-	<hr>Discount factor<hr>
+	<h2>Discount factor</h2>
 	<table>
 		<tr>
 			<td>
@@ -986,12 +986,381 @@
 		</tr>
 	</table>
 	<hr>
+	<h2>Dynamic Programming for Policy Evaluation</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Dynamic-programming-for-policy-evaluation.png" alt="Dynamic-programming-for-policy-evaluation">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Dynamic-programming-for-policy-evaluation-1.png" alt="Dynamic-programming-for-policy-evaluation-1">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="Dynamic-programming-for-policy-evaluation-2.png" alt="Dynamic-programming-for-policy-evaluation-2">
+				</center>
+			</td>
+			<td>
+				<ul>
+					<li>
+						You are in a state s (denoted with white circle at the 
+						top), and then you can take an action. So, what dynamic 
+						programming is doing is computing an estimate of the V_pi 
+						here at the top by saying, what is the expectation over Pi 
+						of RT plus Gamma V_k-1. And that expectation over will be 
+						the probalility of s prime given s or P(s'| s1 Pi(s) ). 
+					</li>
+					<li>
+						We start with a state and then we take an action, 
+						and then we think about the next states that we could 
+						reach.
+					</li>
+					<li>
+						We are assuming that we are in a stochastic process. So, 
+						we will be at different next state each time.
+					</li>
+					<li>
+						And then we can think about after we reach that state, 
+						we can take some other actions. 
+					</li>
+					<li>
+						So we can think of drawing the tree of trajectories that 
+						we might reach if we started in a state and start 
+						following our policy.
+					</li>
+					<li>
+						Where whenever we get to make a choice, there is a single 
+						action we take because we are doing policy evaluation. 
+					</li>
+					<li>
+						In dynamic programming we take an expectation over next states.
+					</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="Dynamic-programming-for-policy-evaluation-3.png" alt="Dynamic-programming-for-policy-evaluation-3">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Dynamic-programming-for-policy-evaluation-4.png" alt="Dynamic-programming-for-policy-evaluation-4">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="Dynamic-programming-for-policy-evaluation-5.png" alt="Dynamic-programming-for-policy-evaluation-5">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Dynamic-programming-for-policy-evaluation-6.png" alt="Dynamic-programming-for-policy-evaluation-6">
+				</center>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Policy Evaluation</h2>
+	<img src="Policy-evaluation-DP.png" alt="Policy-evaluation-DP">
+	<hr>
+	<h2>Monte Carlo (MC) Policy Evaluation</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Monte-Carlo-Policy-Evaluation.png" alt="Monte-Carlo-Policy-Evaluation">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Monte-Carlo-Policy-Evaluation-1.png" alt="Monte-Carlo-Policy-Evaluation-1">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="Monte-Carlo-Policy-Evaluation-2.png" alt="Monte-Carlo-Policy-Evaluation-2">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="First-visit-Monte-Carlo-On-Policy-Evaluation.png" alt="First-visit-Monte-Carlo-On-Policy-Evaluation">
+				</center>
+			</td>
+		</tr>
+	</table>
+	<ul>
+		<li>
+			Monte Carlo policy evaluation does not require 
+			a specific model of the dynamics/rewards.
+		</li>
+		<li>
+			It just requires you to be able to sample from 
+			the environment.
+		</li>
+		<li>
+			Does not do the bootstraping.
+		</li>
+		<li>
+			Does not try to maintian V_k-1.
+		</li>
+		<li>
+			It simply sums up all the rewards from each 
+			of your trajectories and then averages across 
+			those.
+		</li>
+		<li>
+			It does not assume that the state is markov.
+		</li>
+		<li>
+			There is no notion of the next state and 
+			whether or not that summarize the future 
+			returns.
+		</li>
+		<li>
+			An important thing is that it can only be 
+			applied to episodic MDPs. (The process will end each time.)
+		</li>
+		<li>
+			We also do this in an incremental fashion, which 
+			means that after we maintain a runnning estimate, 
+			after each episode, we update our current estimate 
+			as V_pi. And we hope that as we get more and more 
+			data, this estimate will converge to the true value.
+		</li>
+		<li>
+			In the First-Visit slide, N(s) is the number of times 
+			visited a state. And then we loop for every timestep t.
+			Increment the counter and update total return. Use 
+			average to compute the current estimate of the value 
+			for the state. This means consistent (converges to a value).
+		</li>
+	</ul>
+	<hr>
+	<h2>Bias, Variance and MSE</h2>
+	<p>How do we evaluate whether or not the estimate is good? How are we going to compare all of the estimators?</p>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Policy-Evaluation-Bias-Variance-MSE.png" alt="Policy-Evaluation-Bias-Variance-MSE">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Properties-Every-Visit-MC.png" alt="Properties-Every-Visit-MC">
+				</center>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Incremental Monte Carlo On Policy Evaluation</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Incremental-MC-On-Policy-Evaluation.png" alt="Incremental-MC-On-Policy-Evaluation">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Incremental-MC-On-Policy-Evaluation-Running-Mean.png" alt="Incremental-MC-On-Policy-Evaluation-Running-Mean">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="MC-On-Policy-Evaluation.png" alt="MC-On-Policy-Evaluation">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="MC-On-Policy-Evaluation-1.png" alt="MC-On-Policy-Evaluation-1">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="MC-On-Policy-Evaluation-2.png" alt="MC-On-Policy-Evaluation-2">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="MC-On-Policy-Evaluation-3.png" alt="MC-On-Policy-Evaluation-3">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="MC-Policy-Evaluation-Summary.png" alt="MC-Policy-Evaluation-Summary">
+				</center>
+			</td>
+			<td>
+
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Temporal Difference Learning</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Temporal-Difference-Learning.png" alt="Temporal-Difference-Learning">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Temporal-Difference-Learning-1.png" alt="Temporal-Difference-Learning-1">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="Temporal-Difference-Learning-2.png" alt="Temporal-Difference-Learning-2">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Temporal-Difference-Learning-3.png" alt="Temporal-Difference-Learning-3">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="TD-Learning.png" alt="TD-Learning">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Temporal-Difference-Policy-Evaluation.png" alt="Temporal-Difference-Policy-Evaluation">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="DP-MC-TD-Understanding.png" alt="DP-MC-TD-Understanding">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="DP-MC-TD-Understanding-1.png" alt="DP-MC-TD-Understanding-1">
+				</center>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Some Important Properties to evaluate Model-free Policy Evaluation Algorithms</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Some-Important-Properties-to-evaluate-Model-free-Policy-Evaluation-Algorithms.png" alt="Some-Important-Properties-to-evaluate-Model-free-Policy-Evaluation-Algorithms">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Bias-Variance-Of-Model-Free-Policy-Evaluation-Algorithm.png" alt="Bias-Variance-Of-Model-Free-Policy-Evaluation-Algorithm">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="In-The-Example-MC-TD-Differences.png" alt="In-The-Example-MC-TD-Differences">
+				</center>
+			</td>
+			<td>
+				<p>The differences between MC and TD for mars rover example</p>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>Batch MS and TD</h2>
+	<table>
+		<tr>
+			<td>
+				<center>
+					<img src="Batch-MC-and-TD.png" alt="Batch-MC-and-TD">
+				</center>
+			</td>
+			<td>
+				<p>
+					What if we want to go over data more than once. 
+					If they were willing to spend a bit more 
+					computation. So we can actually get better estimates 
+					and be more sample efficient. Meaning that we want 
+					to use our data more effciently so that we can get 
+					a better estimate. So often we call this batch or 
+					offline. 
+				</p>
+				<p>
+					Let's imagine we have set of K episodes, and we can 
+					repeatedly smaple an episode. And then we either apply 
+					Monte Carlo or TD to the whole episode.
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="Example-MC-TD.png" alt="Example-MC-TD">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Example-MC-TD-1.png" alt="Example-MC-TD-1">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="Batch-MC-TD-Converges.png" alt="Batch-MC-TD-Converges">
+				</center>
+			</td>
+			<td>
+				<center>
+					<img src="Some-Important-Properties-to-evaluate-Model-free-Policy-Evaluation-Algorithms-1.png" alt="Some-Important-Properties-to-evaluate-Model-free-Policy-Evaluation-Algorithms-1">
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<center>
+					<img src="Alternative-certainity-equivalence-V-pi-MLE-MDP-Model-Estimates.png" alt="Alternative-certainity-equivalence-V-pi-MLE-MDP-Model-Estimates">
+				</center>
+			</td>
+			<td>
+
+			</td>
+		</tr>
+	</table>
+	<hr>
 	<h2></h2>
 	<hr><hr>
 	<h1>References:</h1>
 	<p>Course content: https://www.youtube.com/playlist?list=PLoROMvodv4rOSOPzutgyCTapiGlY2Nd8u</p>
 	<p>Content- Stanford CS234: Reinforcement Learning | Winter 2019 | Lecture 1 - Introduction - Emma Brunskill - https://www.youtube.com/watch?v=FgzM3zpZ55o</p>
 	<p>Content- Stanford CS234: Reinforcement Learning | Winter 2019 | Lecture 2 - Given a Model of the World - https://www.youtube.com/watch?v=E3f2Camj0Is&t=1560s</p>
+	<p>Content- Stanford CS234: Reinforcement Learning | Winter 2019 | Lecture 3 - Model-Free Policy Evaluation - https://www.youtube.com/watch?v=dRIhrn8cc9w&t=78s</p>
 	<p>Imitation learning: https://deepai.org/machine-learning-glossary-and-terms/imitation-learning</p>
 	<p>Menaing of Montezuma's revenge: https://healthcenter.indiana.edu/health-answers/travel/travelers-diarrhea.html</p>
 </body>
