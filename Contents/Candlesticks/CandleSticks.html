@@ -20,7 +20,7 @@
 <!--For Python: https://greyhoundanalytics.com/blog/backtesting-candlestick-patterns-in-python/-->
 <body class="prevent-select">
 	<h1>JAPANESE CANDLESTICK CHARTING TECHNIQUE</h1>
-	<p><b>Last updated on: May 29, 2024</b></p>
+	<p><b>Last updated on: June 04, 2024</b></p>
 	<hr>
 	<hr>
 	<p>
@@ -67,7 +67,7 @@
 				</p>
 			</td>
 			<td style="width: 50%;">
-				<img src="screenshot-bar-charts-candle-charts.jpg" 
+ 0				<img src="screenshot-bar-charts-candle-charts.jpg" 
 				alt="Image of bar chart vs candle chart" 
 				width="500px" height="400px" >
 			</td>
@@ -147,6 +147,40 @@
 			</td>
 		</tr>
 	</table>
+	<h2>Python code for candlestick pattern recognition</h2>
+	<ul>
+		<li>Libraries required: talib, numpy, pandas, matplotlib.pyplot and mplfinance</li>
+		<li>TA-Lib library used for pattern recognition.</li>
+		<li>In windows environment, TA-lIB installation is required.</li>
+	</ul>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	import talib<br>
+	import numpy as np<br>
+	import pandas as pd<br>
+	import matplotlib.pyplot as plt<br>
+	import mplfinance as mpf<br><br>
+	plt.style.use('ggplot')<br><br>
+	path_for_data_file = "absolute path for file"<br>
+	data_from_file = pd.read_csv(path_for_data_file)<br>
+	data_from_file['Date'] = pd.to_datetime(data_from_file['Date'], format="%d-%m-%Y")<br>
+	data_from_file.index = pd.DatetimeIndex(data_from_file['Date'])<br>
+	refined_data = data_from_file[(data_from_file.Date > '1998-02-01') & (data_from_file.Date < '1998-05-30')]<br>
+	mpf.plot(refined_data, type='candle', mav=(3, 6, 9))<br><br><br>
+
+
+	def pattern_recognition(data):<br>
+		<div style="padding-left: 20px;">
+			data['remarks'] = None<br>
+			data['support'] = None<br>
+			data['resistance'] = None<br>
+			trend_reversal(data)<br>
+			less_powerful_trend_reversal(data)<br>
+			continuation_pattern(data)<br>
+			doji_reversal_indicator(data)<br><br><br>
+		</div>
+	pattern_recognition(data_from_file)<br>
+	</div>
 	<hr>
 	<h2>Trend reversal</h2>
 	<table>
@@ -185,6 +219,28 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+		def trend_reversal(data):<br>
+			<div style="padding-left: 20px;">
+			hammer_pattern(data)<br>
+			hangingman_pattern(data)<br>
+			bullish_engulfing_pattern(data)<br>
+			bearish_engulfing_pattern(data)<br>
+			dark_cloud_cover(data)<br>
+			piercing_pattern(data)<br>
+			morning_star(data)<br>
+			morning_doji_star(data)<br>
+			evening_star(data)<br>
+			evening_doji_star(data)<br>
+			shooting_star(data)<br>
+			inverted_hammer(data)<br>
+			doji_star_support(data)<br>
+			doji_star_resistance(data)<br>
+			abandoned_baby_top(data)<br>
+			abandoned_baby_bottom(data)<br>
+			</div>
+	</div>
 	<hr>
 	<h2>UMBRELLA LINES</h2>
 	<table>
@@ -297,6 +353,22 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def hammer_pattern(data):<br>
+		<div style="padding-left: 20px;">
+			hammer = talib.CDLHAMMER(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(hammer == 100) & (data['remarks'].isna()), 'remarks'] = 'hammer'<br>
+			data.loc[(hammer == 100) & (data['support'].isna()), 'support'] = data.loc[hammer == 100, 'Low']<br><br><br>
+		</div>
+
+	def hangingman_pattern(data):<br>
+		<div style="padding-left: 20px;">
+			hanging_man = talib.CDLHANGINGMAN(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(hanging_man == -100) & (data['remarks'].isna()), 'remarks'] = 'hanging_man'<br>
+			data.loc[(hanging_man == -100) & (data['resistance'].isna()), 'resistance'] = data.loc[hanging_man == -100, 'Low']<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THE ENGULFING PATTERN</h2>
 	<table>
@@ -422,6 +494,22 @@
 			to be comfortable buying (consider correction as well)</u>. 
 		</li>
 	</ul>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def bullish_engulfing_pattern(data):<br>
+		<div style="padding-left: 20px;">
+			bullish_engulfing = talib.CDLENGULFING(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(bullish_engulfing == 100) & (data['remarks'].isna()), 'remarks'] = 'bullish_engulfing_pattern'<br>
+			data.loc[(bullish_engulfing == 100) & (data['support'].isna()), 'support'] = data.loc[bullish_engulfing == 100, 'Low']<br><br><br>
+		</div>
+
+	def bearish_engulfing_pattern(data):<br>
+		<div style="padding-left: 20px;">
+			bearish_engulfing = talib.CDLENGULFING(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(bearish_engulfing == -100) & (data['remarks'].isna()), 'remarks'] = 'bearish_engulfing_pattern'<br>
+			data.loc[(bearish_engulfing == -100) & (data['resistance'].isna()), 'resistance'] = data.loc[bearish_engulfing == -100, 'Low']<br>
+		</div>
+	</div>
 	<hr>
 	<h2>DARK-CLOUD COVER</h2>
 	<table>
@@ -520,6 +608,16 @@
 			very high opening interest can be another warning</b>. 
 		</li>
 	</ol>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def dark_cloud_cover(data):<br>
+		<div style="padding-left: 20px;">
+			dark_cloud_cover = talib.CDLDARKCLOUDCOVER(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(dark_cloud_cover == -100) & (data['remarks'].isna()), 'remarks'] = 'dark_cloud_cover'<br>
+			data.loc[(dark_cloud_cover == -100) & (data['resistance'].isna()), 'resistance'] = data.loc[dark_cloud_cover == -100, 'Low']<br>
+			# print(data[dark_cloud_cover == -100])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>PIERCING PATTERN</h2>
 	<table>
@@ -640,6 +738,16 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def piercing_pattern(data):<br>
+		<div style="padding-left: 20px;">
+			piercing_pattern = talib.CDLPIERCING(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(piercing_pattern == 100) & (data['remarks'].isna()), 'remarks'] = 'piercing_pattern'<br>
+			data.loc[(piercing_pattern == 100) & (data['support'].isna()), 'support'] = data.loc[piercing_pattern == 100, 'Low']<br>
+			# print(data[piercing_pattern == 100])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>STARS</h2>
 	<table>
@@ -723,6 +831,27 @@
 			<li>The shooting star</li>
 		</ul>
 	</ul>
+	
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def doji_star_support(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			doji_star = talib.CDLDOJISTAR(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(doji_star == value_found) & (data['remarks'].isna()), 'remarks'] = 'doji_star'<br>
+			data.loc[(doji_star == value_found) & (data['support'].isna()), 'support'] = data.loc[doji_star == value_found, 'Low']<br>
+			# print(data[doji_star == value_found])<br><br><br>
+		</div>
+
+	def doji_star_resistance(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = -100<br>
+			doji_star = talib.CDLDOJISTAR(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(doji_star == value_found) & (data['remarks'].isna()), 'remarks'] = 'doji_star'<br>
+			data.loc[(doji_star == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[doji_star == value_found, 'Low']<br>
+			# print(data[doji_star == value_found])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THE MORNING STAR</h2>
 	<table>
@@ -784,6 +913,18 @@
 			</td>
 		</tr>
 	</table>
+	
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def morning_star(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			morning_star = talib.CDLMORNINGSTAR(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(morning_star == value_found) & (data['remarks'].isna()), 'remarks'] = 'morning_star'<br>
+			data.loc[(morning_star == value_found) & (data['support'].isna()), 'support'] = data.loc[morning_star == value_found, 'Low']<br>
+			# print(data[morning_star == value_found])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THE EVENING STAR</h2>
 	<table>
@@ -856,6 +997,17 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def evening_star(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = -100<br>
+			evening_star = talib.CDLEVENINGSTAR(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(evening_star == value_found) & (data['remarks'].isna()), 'remarks'] = 'evening_star'<br>
+			data.loc[(evening_star == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[evening_star == value_found, 'Low']<br>
+			# print(data[evening_star == value_found])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THE MORNING AND EVENING DOJI STARS</h2>
 	<table>
@@ -917,6 +1069,41 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def abandoned_baby_top(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = -100<br>
+			abandoned_baby_top = talib.CDLABANDONEDBABY(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(abandoned_baby_top == value_found) & (data['remarks'].isna()), 'remarks'] = 'abandoned_baby_top'<br>
+			data.loc[(abandoned_baby_top == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[abandoned_baby_top == value_found, 'Low']<br>
+			# print(data[abandoned_baby_top == value_found])<br><br><br>
+		</div>
+	def abandoned_baby_bottom(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			abandoned_baby_bottom = talib.CDLABANDONEDBABY(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(abandoned_baby_bottom == value_found) & (data['remarks'].isna()), 'remarks'] = 'abandoned_baby_bottom'<br>
+			data.loc[(abandoned_baby_bottom == value_found) & (data['support'].isna()), 'support'] = data.loc[abandoned_baby_bottom == value_found, 'Low']<br>
+			# print(data[abandoned_baby_bottom == value_found])<br><br><br>
+		</div>
+	def morning_doji_star(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			morning_doji_star = talib.CDLMORNINGDOJISTAR(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(morning_doji_star == value_found) & (data['remarks'].isna()), 'remarks'] = 'morning_doji_star'<br>
+			data.loc[(morning_doji_star == value_found) & (data['support'].isna()), 'support'] = data.loc[morning_doji_star == value_found, 'Low']<br>
+			# print(data[morning_doji_star == value_found])<br><br><br>
+		</div>
+	def evening_doji_star(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = -100<br>
+			evening_doji_star = talib.CDLEVENINGSTAR(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(evening_doji_star == value_found) & (data['remarks'].isna()), 'remarks'] = 'evening_doji_star'<br>
+			data.loc[(evening_doji_star == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[evening_doji_star == value_found, 'Low']<br>
+			# print(data[evening_doji_star == value_found])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THE SHOOTING STAR AND THE INVERTED HAMMER</h2>
 	<table>
@@ -992,6 +1179,25 @@
 		    to  bottom pickers going long. This could feed upon itself with the result being the beginning of a rally.</u> 
 		</li>
 	</ul>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def shooting_star(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = -100<br>
+			shooting_star = talib.CDLSHOOTINGSTAR(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(shooting_star == value_found) & (data['remarks'].isna()), 'remarks'] = 'shooting_star'<br>
+			data.loc[(shooting_star == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[shooting_star == value_found, 'Low']<br>
+			# print(data[shooting_star == value_found])<br><br><br>
+		</div>
+	def inverted_hammer(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			inverted_hammer = talib.CDLINVERTEDHAMMER(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(inverted_hammer == value_found) & (data['remarks'].isna()), 'remarks'] = 'inverted_hammer'<br>
+			data.loc[(inverted_hammer == value_found) & (data['support'].isna()), 'support'] = data.loc[inverted_hammer == value_found, 'Low']<br>
+			# print(data[inverted_hammer == value_found])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>LESS POWERFUL REVERSAL SIGNALS</h2>
 	<p>
@@ -999,6 +1205,19 @@
 		belt-hold lines, the upside-gap two crows, and counterattack lines, three black crows, three 
 		mountains, three rivers, dumpling tops, fry-pan bottoms, and tower tops and bottoms.
 	</p>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def less_powerful_trend_reversal(data):<br>
+		<div style="padding-left: 20px;">
+			harami_cross(data)<br>
+			harami_pattern(data)<br>
+			belt_hold_lines(data)<br>
+			upside_two_crows(data)<br>
+			three_black_crows(data)<br>
+			three_advancing_white_soliders(data)<br>
+			counter_attack_lines(data)<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THE HARAMI PATTERN</h2>
 	<table>
@@ -1056,6 +1275,20 @@
 			body.
 		</li>
 	</ul>
+	
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def harami_pattern(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			harami_pattern = talib.CDLHARAMI(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(harami_pattern == value_found) & (data['remarks'].isna()), 'remarks'] = 'harami_pattern'<br>
+			data.loc[(harami_pattern == value_found) & (data['support'].isna()), 'support'] = data.loc[harami_pattern == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(harami_pattern == value_found) & (data['remarks'].isna()), 'remarks'] = 'harami_pattern'<br>
+			data.loc[(harami_pattern == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[harami_pattern == value_found, 'Low']<br>
+		</div>
+	</div>
 	<hr>
 	<h2>HARAMI CROSS</h2>
 	<table>
@@ -1089,6 +1322,20 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def harami_cross(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			harami_cross = talib.CDLHARAMICROSS(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(harami_cross == value_found) & (data['remarks'].isna()), 'remarks'] = 'harami_cross'<br>
+			data.loc[(harami_cross == value_found) & (data['support'].isna()), 'support'] = data.loc[harami_cross == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(harami_cross == value_found) & (data['remarks'].isna()), 'remarks'] = 'harami_cross'<br>
+			data.loc[(harami_cross == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[harami_cross == value_found, 'Low']<br>
+			# print(data.loc[(harami_cross == value_found) | (harami_cross == -value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>TWEEZERS TOP AND BOTTOMS</h2>
 	<table>
@@ -1260,6 +1507,20 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def belt_hold_lines(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			belt_hold_lines = talib.CDLBELTHOLD(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(belt_hold_lines == value_found) & (data['remarks'].isna()), 'remarks'] = 'belt_hold_lines'<br>
+			data.loc[(belt_hold_lines == value_found) & (data['support'].isna()), 'support'] = data.loc[belt_hold_lines == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(belt_hold_lines == value_found) & (data['remarks'].isna()), 'remarks'] = 'belt_hold_lines'<br>
+			data.loc[(belt_hold_lines == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[belt_hold_lines == value_found, 'Low']<br>
+			# print(data.loc[(belt_hold_lines == value_found) | (belt_hold_lines == -value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>UPSIDE-GAP TWO CROWS</h2>
 	<table>
@@ -1307,6 +1568,17 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def upside_two_crows(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = -100<br>
+			upside_two_crows = talib.CDLUPSIDEGAP2CROWS(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(upside_two_crows == value_found) & (data['remarks'].isna()), 'remarks'] = 'upside_two_crows'<br>
+			data.loc[(upside_two_crows == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[upside_two_crows == value_found, 'Low']<br>
+			# print(data.loc[(upside_two_crows == value_found) | (upside_two_crows == value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THREE BLACK CROWS</h2>
 	<table>
@@ -1338,6 +1610,17 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def three_black_crows(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = -100<br>
+			three_black_crows = talib.CDL3BLACKCROWS(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(three_black_crows == value_found) & (data['remarks'].isna()), 'remarks'] = 'three_black_crows'<br>
+			data.loc[(three_black_crows == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[three_black_crows == value_found, 'Low']<br>
+			# print(data.loc[(three_black_crows == value_found) | (three_black_crows == value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THREE ADVANCING WHITE SOLIDERS</h2>
 	<table>
@@ -1404,6 +1687,17 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def three_advancing_white_soliders(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			three_advancing_white_soliders = talib.CDL3WHITESOLDIERS(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(three_advancing_white_soliders == value_found) & (data['remarks'].isna()), 'remarks'] = 'three_advancing_white_soliders'<br>
+			data.loc[(three_advancing_white_soliders == value_found) & (data['support'].isna()), 'support'] = data.loc[three_advancing_white_soliders == value_found, 'Low']<br>
+			# print(data.loc[(three_advancing_white_soliders == value_found) | (three_advancing_white_soliders == value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THREE MOUNTAINS AND THREE RIVERS</h2>
 	<table>
@@ -1504,6 +1798,21 @@
 			</td>
 		</tr>
 	</table>
+	
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def counter_attack_lines(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			found_value = talib.CDLCOUNTERATTACK(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'counter_attack_lines'<br>
+			data.loc[(found_value == value_found) & (data['support'].isna()), 'support'] = data.loc[found_value == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'counter_attack_lines'<br>
+			data.loc[(found_value == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[found_value == value_found, 'Low']<br>
+			# print(data.loc[(found_value == value_found) | (found_value == -value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>DUMPLING TOPS AND FRYPAN BOTTOMS</h2>
 	<table>
@@ -1620,6 +1929,16 @@
 			that include windows), the rising and falling three methods, separating lines, and three white soliders.
 		</li>
 	</ul>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def continuation_pattern(data):<br>
+		<div style="padding-left: 20px;">
+			tasuki_gap(data)<br>
+			gap_side_by_side_white_lines(data)<br>
+			rise_fall_three_method(data)<br>
+			separating_lines(data)<br>
+		</div>
+	</div>
 	<hr>
 	<h2>WINDOWS</h2>
 	<table>
@@ -1752,6 +2071,20 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def tasuki_gap(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			found_value = talib.CDLTASUKIGAP(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'tasuki_gap'<br>
+			data.loc[(found_value == value_found) & (data['support'].isna()), 'support'] = data.loc[found_value == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'tasuki_gap'<br>
+			data.loc[(found_value == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[found_value == value_found, 'Low']<br>
+			# print(data.loc[(found_value == value_found) | (found_value == -value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>High-Price and Low-Price Gapping Plays</h2>
 	<table>
@@ -1853,6 +2186,20 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def gap_side_by_side_white_lines(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			found_value = talib.CDLGAPSIDESIDEWHITE(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'gap_side_by_side_white_lines'<br>
+			data.loc[(found_value == value_found) & (data['support'].isna()), 'support'] = data.loc[found_value == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'gap_side_by_side_white_lines'<br>
+			data.loc[(found_value == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[found_value == value_found, 'Low']<br>
+			# print(data.loc[(found_value == value_found) | (found_value == -value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>RISING AND FALLING THREE METHODS</h2>
 	<table>
@@ -1934,6 +2281,20 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def rise_fall_three_method(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			found_value = talib.CDLRISEFALL3METHODS(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'rise_fall_three_method'<br>
+			data.loc[(found_value == value_found) & (data['support'].isna()), 'support'] = data.loc[found_value == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'rise_fall_three_method'<br>
+			data.loc[(found_value == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[found_value == value_found, 'Low']<br>
+			# print(data.loc[(found_value == value_found) | (found_value == -value_found)]['remarks'])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>SEPARATING LINES</h2>
 	<table>
@@ -1967,6 +2328,20 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def separating_lines(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			found_value = talib.CDLSEPARATINGLINES(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'separating_lines'<br>
+			data.loc[(found_value == value_found) & (data['support'].isna()), 'support'] = data.loc[found_value == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'separating_lines'<br>
+			data.loc[(found_value == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[found_value == value_found, 'Low']<br>
+			# print(data.loc[(found_value == value_found) | (found_value == -value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THE MAGIC DOJI</h2>
 	<center>
@@ -2051,6 +2426,16 @@
 			Where a doji is in relation to its preceding trend is of pivotal importance.
 		</li>
 	</ul>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def doji_reversal_indicator(data):<br>
+		<div style="padding-left: 20px;">
+			tri_star_patern(data)<br>
+			grave_stone(data)<br>
+			dragon_fly(data)<br>
+			rickshaw_man(data)<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THE NORTHERN DOJI (DOJI DURING RALLIES)</h2>
 	<table>
@@ -2175,6 +2560,42 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def rickshaw_man(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			found_value = talib.CDLRICKSHAWMAN(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'rickshaw_man'<br>
+			data.loc[(found_value == value_found) & (data['support'].isna()), 'support'] = data.loc[found_value == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'rickshaw_man'<br>
+			data.loc[(found_value == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[found_value == value_found, 'Low']<br>
+			# print(data.loc[(found_value == value_found) | (found_value == -value_found)])<br><br><br>
+		</div>
+	def grave_stone(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = -100<br>
+			found_value = talib.CDLGRAVESTONEDOJI(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'grave_stone'<br>
+			data.loc[(found_value == value_found) & (data['support'].isna()), 'support'] = data.loc[found_value == value_found, 'Low']<br>
+			value_found = 100<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'grave_stone'<br>
+			data.loc[(found_value == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[found_value == value_found, 'Low']<br>
+			# print(data.loc[(found_value == value_found) | (found_value == -value_found)])<br><br><br>
+		</div>
+	def dragon_fly(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			found_value = talib.CDLDRAGONFLYDOJI(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'dragon_fly'<br>
+			data.loc[(found_value == value_found) & (data['support'].isna()), 'support'] = data.loc[found_value == value_found, 'Low']<br>
+			value_found = -100<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'dragon_fly'<br>
+			data.loc[(found_value == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[found_value == value_found, 'Low']<br>
+			# print(data.loc[(found_value == value_found) | (found_value == -value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>THE TRI_STAR</h2>
 	<table>
@@ -2198,6 +2619,20 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Python code</h3>
+	<div style="border: 1px solid black; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; color: blue; background-color: lightgray;">
+	def tri_star_patern(data):<br>
+		<div style="padding-left: 20px;">
+			value_found = 100<br>
+			found_value = talib.CDLTRISTAR(data.Open, data.High, data.Low, data.Close)<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'tri_star_patern'<br>
+			data.loc[(found_value == value_found) & (data['support'].isna()), 'support'] = data.loc[found_value == value_found, 'High']<br>
+			value_found = -100<br>
+			data.loc[(found_value == value_found) & (data['remarks'].isna()), 'remarks'] = 'tri_star_patern'<br>
+			data.loc[(found_value == value_found) & (data['resistance'].isna()), 'resistance'] = data.loc[found_value == value_found, 'Low']<br>
+			print(data.loc[(found_value == value_found) | (found_value == -value_found)])<br>
+		</div>
+	</div>
 	<hr>
 	<h2>A CLUSTER OF CANDLES</h2>
 	<p>A confluence / cluster of candles can help pinpoint support or resistance.</p>
